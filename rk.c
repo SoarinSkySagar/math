@@ -1,33 +1,29 @@
-#include<stdio.h>
-#include<math.h>
-float fx(float x, float y)
-{
-    return 1/log(x+y);
+#include <stdio.h>
+float fn(float x,float y){
+    return (x*x)+(y*y);
 }
-int main()
-{
-    int i;
-    float x0,y0,n,x,y,h,k1,k2,k3,k4;
-    printf("\nEnter x0:");
+int main() {
+    // Write C code here
+    float x0,y0,x,y,h,n;
+    int j;
+    printf("Enter the initial value of x: ");
     scanf("%f",&x0);
-    printf("\nEnter y0:");
+    printf("Enter the initial value of y: ");
     scanf("%f",&y0);
-    printf("\nEnter h:");
+    printf("Enter h: ");
     scanf("%f",&h);
-    printf("\nEnter x:");
+    printf("Enter x: ");
     scanf("%f",&x);
     n=(x-x0)/h;
-    i=0;
-    while(i<n)
-    {
-        k1=h*fx(x0,y0);
-        k2=h*fx(x0+(h/2),y0+(k1/2));
-        k3=h*fx(x0+(h/2),y0+(k2/2));
-        k4=h*fx(x0+h,y0+k3);
-        y=y0+((k1+(2*k2)+(2*k3)+k4)/6);
-        x0=x0+h;
-        y0=y;
-        i++;
+    float k1,k2,k3,k4;
+    for(j=0;j<n;j++){
+        k1=h*fn(x0,y0);
+        k2=h*fn(x0+h/2,y0+k1/2);
+        k3=h*fn(x0+h/2,y0+k2/2);
+        k4=h*fn(x0+h,y0+k3);
+        y0=y0+(k1+2*k2+2*k3+k4)/6;
     }
-    printf("\nAnswer=%.4f",y0);
+    printf("Result: f(%f)=%f",x,y0);
+
+    return 0;
 }

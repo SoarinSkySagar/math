@@ -1,47 +1,32 @@
-#include<stdio.h>
-int main()
-{
-    float a[100],y[100],term,sum,x;
-    int n,i,j;
-    sum=0;
-    printf("\nEnter the number of terms:");
+#include <stdio.h>
+
+int main() {
+    // Write C code here
+    int i,j,n;
+    float x[50],y[50],xn,term,sum;
+    printf("Enter the number of points: ");
     scanf("%d",&n);
-    printf("\nEnter x:");
-    for(i=0;i<n;i++)
-    {
-        scanf("%f",&a[i]);
+    printf("Enter X values:\n");
+    for(i=0;i<n;i++){
+        printf("Enter x[%d]: ",i);
+        scanf("%f",&x[i]);
     }
-    printf("\nEnter y:");
-    for(i=0;i<n;i++)
-    {
+    for(i=0;i<n;i++){
+        printf("Enter y[%d]: ",i);
         scanf("%f",&y[i]);
     }
-    printf("\nx:\t");
-     for(i=0;i<n;i++)
-    {
-        printf("%.2f\t",a[i]);
-    }
-    printf("\n");
-    printf("\ny:\t");
-     for(i=0;i<n;i++)
-    {
-        printf("%.2f\t",y[i]);
-    }
-    printf("\n");
-    printf("\nEnter the interpolating point:");
-    scanf("%f",&x);
-    for(i=0;i<n;i++)
-    {
+    printf("Enter the interpolating point: ");
+    scanf("%f",&xn);
+    sum=0;
+    for(j=0;j<n;j++){
         term=1;
-        for(j=0;j<n;j++)
-        {
+        for(i=0;i<n;i++){
             if(i!=j)
-            {
-                term*=(x-a[j])/(a[i]-a[j]);
-            }
-        }
-        sum+=term*y[i];
+            term*=(xn-x[i])/(x[j]-x[i]);
     }
-    printf("\nAnswer is %.2f",sum);
+    sum+=term*y[j];
+    }
+    printf("Result: %f",sum);
+
     return 0;
 }

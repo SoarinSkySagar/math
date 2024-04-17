@@ -1,52 +1,48 @@
 #include<stdio.h>
-
-int main () 
-{ 
-    float ax[100][100], u, h, x, sum, term;
-    int n, i, j, k;
+int main(){
+	int i,j,n,k;
+	float a[50][50],x,sum=0,term;
+	printf("Enter the number of datapoints: ");
+	scanf("%d",&n);
+	printf("Enter X values: \n");
+	for(i=0;i<n;i++){
+		printf("Enter x[%d]: ",i);
+		scanf("%f",&a[i][0]);
+	}
+		printf("Enter Y values: \n");
+	for(i=0;i<n;i++){
+		printf("Enter y[%d]: ",i);
+		scanf("%f",&a[i][1]);
+	}
+	for(j=2;j<=n;j++){
+		for(i=n-1;i>=j-1;i--){
+			a[i][j]=a[i][j-1]-a[i-1][j-1];
+					
+		}
+	}
+	printf("The backward difference table is:\n");
+	for(i=0;i<n;i++){
+		for(j=0;j<=i+1;j++){
+			printf("%f\t",a[i][j]);
+			
+		}
+		printf("\n");
+	}
+	printf("Enter the interpolating point: ");
+	scanf("%f",&x);
+	float h,p;
+	h=a[1][0]-a[0][0];
+	p=(x-a[n-1][0])/h;
+	sum=a[n-1][1];
+	term=1;
     
-    printf("\nEnter the value of n:\n");
-    scanf("%d", &n);
     
-    printf("\nEnter the values of x and y (separated by space):\n");
-    for (i = 0; i < n; i++)
-        scanf("%f%f", &ax[i][0], &ax[i][1]);
-    
-
-    for (j = 2; j <= n; j++) // Compute backward differences
-    {
-        for (i = 0; i <= n - j; i++)
-        {
-            ax[i][j] = ax[i+1][j-1] - ax[i][j-1];
-        }
+    for (k = 2; k <=n; k++) {
+        term *= (p + k-2) / (k -1);
+        sum += a[n-1][k ] * term;
     }
     
-    // Print x, y, and difference table
-    for (i = 0; i < n; i++)
-    {
-        printf("%.2f\t%.2f\t", ax[i][0], ax[i][1]);
-        for (j = 2; j <= i + 2; j++)
-        {
-            printf("%.2f\t", ax[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nEnter the value of x for which the value of y is wanted:\n");	  
-    scanf("%f", &x);
-    
-    h = ax[1][0] - ax[0][0];
-    u = (x - ax[0][0]) / h;
-    
-    sum = ax[0][1];
-    term = 1.0;
-    for (j = 2; j <= n + 1; j++)
-    {
-        term *= (u - j + 2) / (j - 1);
-        sum += term * ax[0][j];
-    }
-    
-    printf("\nAnswer=%.5f\n", sum);
-    
-    return 0;
+	printf("The value at %f is %f",x,sum);
+	return 0;
+	
 }
