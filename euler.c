@@ -4,7 +4,6 @@ float fn(float x,float y){
 }
 
 int main() {
-    // Write C code here
     float x0,y0,x,y,h,n;
     int j;
     printf("Enter the initial value of x: ");

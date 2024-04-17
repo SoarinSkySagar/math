@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int main() {
-    // Write C code here
     float a[100][100];
     int i,j,k,n;
     printf("Enter the no of variables: ");
@@ -12,7 +11,6 @@ int main() {
             scanf("%f",&a[i][j]);
         }
     }
-    //print matrix
     for(i=0;i<n;i++){
         for(j=0;j<=n;j++){
             if(j==n) printf(" :\t");
@@ -20,7 +18,6 @@ int main() {
         }
         printf("\n");
     }
-	//create echelon
 	for(k=0;k<n-1;k++){
 		for(i=k+1;i<n;i++){
 			float m=a[i][k]/a[k][k];
@@ -36,8 +33,6 @@ int main() {
         }
         printf("\n");
     }
-    //calculation
-    //create echelon
 	for(k=n-1;k>=0;k--){
 		for(i=k-1;i>=0;i--){
 			float m=a[i][k]/a[k][k];

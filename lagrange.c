@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int main() {
-    // Write C code here
     int i,j,n;
     float x[50],y[50],xn,term,sum;
     printf("Enter the number of points: ");
