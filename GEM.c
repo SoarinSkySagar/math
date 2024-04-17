@@ -46,13 +46,7 @@ int main() {
 			}
 		}
 	}
-    for(i=0;i<n;i++){
-        for(j=0;j<=n;j++){
-            if(j==n) printf(" :\t");
-            printf("%f\t",a[i][j]);
-        }
-        printf("\n");
-    }
+    
     float b[100];
     for(i=0;i<n;i++){
         b[i]=a[i][n]/a[i][i];
